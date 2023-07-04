@@ -8,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped(typeof(IBankStatementService), typeof(BankStatementService));
 builder.Services.AddScoped(typeof(IIbanService), typeof(IbanService));
-
+/*
+ //FOR EX 3:
+ //add claims handler to only accept requests with a specific claim.
+ builder.Services.AddTransient<IClaimsTransformation, BankStatements.ClaimsTransformer>();
+ */
 builder.Services.AddDbContext<BankStatementContext>(opt =>
     opt.UseInMemoryDatabase("BankStatement"));
 

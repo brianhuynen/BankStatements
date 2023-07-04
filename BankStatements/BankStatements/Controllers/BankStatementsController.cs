@@ -1,10 +1,13 @@
-﻿using System.Net.Mime;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
+
 using BankStatements.Exceptions;
 using BankStatements.Models.Domain;
 using BankStatements.Models.DTO.BankStatements;
 using BankStatements.Services;
-using AutoMapper;
+
+//using Microsoft.AspNetCore.Authorization;
 
 namespace BankStatements.Controllers
 {
@@ -48,6 +51,10 @@ namespace BankStatements.Controllers
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
+        /*
+         * //For Authorication purposes, we would need to add this attribute
+         * [Authorize(Roles = "editor")]
+         */
         public async Task<ActionResult> PostBankStatement(BankStatementCreateDTO dtoStatement)
         {
             BankStatement bankStatement = _mapper.Map<BankStatement>(dtoStatement);
